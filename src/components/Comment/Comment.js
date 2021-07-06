@@ -38,7 +38,7 @@ export const Comment = ({ comment, isReply }) => {
     });
   };
 
-  const containerClassNames = ["p-2"];
+  const containerClassNames = ["p-2", "overflow-hidden"];
   const paragraphClassNames = ["text-xs"];
 
   if (isReply) {
@@ -51,11 +51,11 @@ export const Comment = ({ comment, isReply }) => {
       <div className={containerClassNames.join(" ")}>
         <div>
           <span>{by}</span>
-          {showReplies && (
-            <span className={["text-xs", "ml-2"].join(" ")}>
-              <ReactTimeAgo date={new Date(time * 1000)} locale="en-US" />
-            </span>
-          )}
+
+          <span className={["text-xs", "ml-2"].join(" ")}>
+            <ReactTimeAgo date={new Date(time * 1000)} locale="en-US" />
+          </span>
+
           {replies.length > 0 && (
             <button
               className={["text-xs", "ml-2", "hover:pointer"].join(" ")}
