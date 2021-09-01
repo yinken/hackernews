@@ -1,0 +1,6 @@
+@import "../styles/variables";
+
+.Field {
+  background-color: $blue;
+  @apply  rounded-md p-2 text-gray-400;
+}

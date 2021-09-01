@@ -38,7 +38,7 @@ export const Comment = ({ comment, isReply }) => {
     });
   };
 
-  const containerClassNames = ["p-2", "overflow-hidden"];
+  const containerClassNames = ["p-2", "overflow-hidden", "bg-white"];
   const paragraphClassNames = ["text-xs"];
 
   if (isReply) {

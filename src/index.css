@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply text-black bg-gray-300 dark:text-gray-400 dark:bg-gray-700;
+  @apply text-gray-900;
+
+  background-color: #e3f1f4;
 }

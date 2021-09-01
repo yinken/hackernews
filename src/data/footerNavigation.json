@@ -1,0 +1,32 @@
+[
+  {
+    "url": "/faq",
+    "title": "FAQ",
+    "isButton": false
+  },
+  {
+    "url": "/lists",
+    "title": "Lists",
+    "isButton": false
+  },
+  {
+    "url": "/api",
+    "title": "API",
+    "isButton": false
+  },
+  {
+    "url": "/security",
+    "title": "Security",
+    "isButton": false
+  },
+  {
+    "url": "/legal",
+    "title": "Legal",
+    "isButton": false
+  },
+  {
+    "url": "/contact",
+    "title": "Contact",
+    "isButton": false
+  }
+]

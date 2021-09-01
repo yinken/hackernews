@@ -8,6 +8,9 @@ import { Comment } from "../Comment/Comment";
 // Helpers
 import { getNewsComments, getNewsDetails } from "../../helpers/getNews";
 
+// Styles
+import styles from "./News.module.scss";
+
 export const NewsDetails = () => {
   const { id } = useParams();
   const [news, setNews] = useState([]);
@@ -58,14 +61,20 @@ export const NewsDetails = () => {
   return (
     <div>
       {!isLoading && (
-        <>
-          <div className={["p-2"].join(" ")}>
+        <div
+          className={[
+            styles.news,
+            "m-2",
+            "md:m-4",
+            "rounded-md",
+            "overflow-hidden",
+          ].join(" ")}
+        >
+          <div className={[].join(" ")}>
             <NewsItem details={news} />
           </div>
-          <div className={["p-4"].join(" ")}>
-            {renderComments(commentDetails)}
-          </div>
-        </>
+          <div className={[].join(" ")}>{renderComments(commentDetails)}</div>
+        </div>
       )}
     </div>
   );

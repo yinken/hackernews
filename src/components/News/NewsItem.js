@@ -1,22 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import SpeechBubble from "../SpeechBubble/SpeechBubble";
+import ReactTimeAgo from "react-time-ago";
+
+// Helpers
+import { extractRootDomain } from "../../helpers/stringParsers";
 
 // Styles
 import styles from "./News.module.scss";
 
 export const NewsItem = ({ details, index }) => {
-  const { id, title, by, url, score, kids: comments } = details;
+  const { id, title, by, url, score, kids: comments, time } = details;
 
-  const containerClassNames = ["flex", "p-2", "m-2", "relative", "w-100"];
+  const containerClassNames = ["flex", "p-4", "relative", "w-100", "bg-white"];
   const headlineClassNames = [
     "title",
-    "font-bold",
     "hover:underline",
     "w-full",
     "text-left",
     "leading-none",
+    "pb-2",
   ];
+
+  const metaInfoClassNames = [
+    "whitespace-nowrap",
+    "text-xs",
+    "mr-4",
+    "text-gray-500",
+  ];
+
   let Tag = "h1";
 
   if (index > 0) {
@@ -26,56 +39,65 @@ export const NewsItem = ({ details, index }) => {
 
   return (
     <li className={containerClassNames.join(" ")}>
-      <div
-        className={[
-          "rounded-full",
-          "bg-black",
-          "text-white",
-          "dark:text-gray-400",
-          "w-10",
-          "h-10",
-          "mr-2",
-          "flex",
-          "items-center",
-          "justify-center",
-          "flex-shrink-0",
-        ].join(" ")}
-      >
-        {index > 0 ? (
-          index
-        ) : (
+      {index === 0 && (
+        <div
+          className={[
+            "text-gray-400",
+            "w-10",
+            "h-10",
+            "mr-2",
+            "flex",
+            "items-center",
+            "justify-center",
+            "flex-shrink-0",
+          ].join(" ")}
+        >
           <Link className="font-bold" to="/">
             {"↩"}
           </Link>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className={["flex", "flex-wrap", "flex-auto"].join(" ")}>
         <span className={headlineClassNames.join(" ")}>
-          <a href={url} title={title} target="_blank" rel="noreferrer">
-            <Tag>{title}</Tag>
-          </a>
+          <Tag>{title}</Tag>
         </span>
-        <span className={["by", "text-xs", "mr-2"].join(" ")}>
-          {`by ${by}`}
-        </span>
-        {comments && index > 0 && (
-          <Link
-            to={{ pathname: `/item/${id}` }}
-            className={["comments", "text-xs", "mr-2", "hover:pointer"].join(
-              " "
-            )}
-          >
-            {`${comments.length} Comments`}
-          </Link>
-        )}
         {score && (
-          <span className={["score", "whitespace-nowrap", "text-xs"].join(" ")}>
-            {`👍 ${score}`}
+          <span className={metaInfoClassNames.join(" ")}>
+            <strong>{score}</strong> points
           </span>
         )}
+        <span className={metaInfoClassNames.join(" ")}>
+          by <strong>{by}</strong>
+        </span>
+        <span className={metaInfoClassNames.join(" ")}>
+          {<ReactTimeAgo date={new Date(time * 1000)} locale="en-US" />}
+        </span>
+        {url && (
+          <a
+            href={url}
+            title={title}
+            target={"_blank"}
+            rel="noreferrer"
+            className={[metaInfoClassNames, "link"].flat().join(" ")}
+          >
+            {`(${extractRootDomain(url)})`}
+          </a>
+        )}
       </div>
-      <div className={["ml-4"].join(" ")}></div>
+
+      <div className={["ml-4", "md:mr-8"].join(" ")}>
+        {comments && index > 0 && (
+          <SpeechBubble>
+            <Link
+              to={{ pathname: `/item/${id}` }}
+              className={["text-xs", "hover:pointer", "text-center"].join(" ")}
+            >
+              {`${comments.length}`}
+            </Link>
+          </SpeechBubble>
+        )}
+      </div>
     </li>
   );
 };

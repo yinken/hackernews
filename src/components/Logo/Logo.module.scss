@@ -1,0 +1,9 @@
+@import "../styles/variables";
+
+.Logo {
+  background-color: $orange;
+}
+
+.hasDropShadow {
+  box-shadow: 0 0 10px 5px $blue;
+}

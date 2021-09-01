@@ -11,7 +11,7 @@ function App() {
     <HelmetProvider>
       <Helmet>
         <title>Hackernews</title>
-        <meta name="description" content="Helmet application" />
+        <meta name="description" content="Hackernews" />
       </Helmet>
       <Router>
         <Switch>

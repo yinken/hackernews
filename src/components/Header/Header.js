@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-export const Header = () => {
+// Styles
+import styles from "./Header.module.scss";
+
+export const Header = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = (theme) => {
@@ -16,37 +19,24 @@ export const Header = () => {
   return (
     <nav
       className={[
+        styles.Header,
         "fixed",
-        "border-black",
-        "border-b",
-        "border-solid",
         "top-0",
         "left-0",
         "w-screen",
-        "bg-gray-300",
-        "dark:bg-gray-700",
         "z-30",
       ].join(" ")}
     >
       <div
         className={[
-          "p-4",
           "flex",
+          "flex-wrap",
           "flex-row",
           "items-center",
-          "justify-between",
+          "justify-start",
         ].join(" ")}
       >
-        <div>
-          <h1 className={["text-lg", "font-bold"].join(" ")}>Hackernews</h1>
-        </div>
-
-        <div>
-          <button
-            className={["hover:pointer"].join(" ")}
-            onClick={() => toggleTheme(theme)}
-          >{`Turn ${theme === "light" ? "off" : "on"} the lights`}</button>
-        </div>
+        {children}
       </div>
     </nav>
   );

@@ -1,0 +1,27 @@
+[
+  {
+    "url": "/home",
+    "title": "Home",
+    "isButton": false
+  },
+  {
+    "url": "/ask",
+    "title": "Ask",
+    "isButton": false
+  },
+  {
+    "url": "/jobs",
+    "title": "Jobs",
+    "isButton": false
+  },
+  {
+    "url": "/show",
+    "title": "Show",
+    "isButton": false
+  },
+  {
+    "url": "/submit",
+    "title": "Submit",
+    "isButton": true
+  }
+]

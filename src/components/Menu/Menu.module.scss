@@ -1,0 +1,12 @@
+:global {
+  :local(.Menu) {
+    > * {
+      @apply flex-grow;
+    }
+    &.hasColumns {
+      > * {
+        @apply w-1/2;
+      }
+    }
+  }
+}

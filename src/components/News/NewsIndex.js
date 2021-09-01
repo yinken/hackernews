@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 
 // Components
 import { NewsItem } from "./NewsItem";
+import Button from "../Button/Button";
 
 // Helpers
 import { getNewsItems, getNewsDetails } from "../../helpers/getNews";
+
+// Styles
+import styles from "./News.module.scss";
+import Logo from "../Logo/Logo";
 
 export const NewsIndex = ({ limit }) => {
   const [newsItems, setNewsItems] = useState([]);
@@ -64,32 +69,42 @@ export const NewsIndex = ({ limit }) => {
 
   return (
     <div className={[].join(" ")}>
-      <div>
-        <ol className={["flex", "flex-col", "w-100"].join(" ")}>
-          {newsDetails.length > 0 ? (
-            renderNews(newsDetails)
-          ) : (
-            <div className={["font-bold", "p-4", "m-4"].join(" ")}>
-              Loading...
-            </div>
-          )}
-        </ol>
-      </div>
-      <div>
-        {newsDetails.length > 0 && (
-          <button
+      <div className={[].join(" ")}>
+        {newsDetails.length > 0 ? (
+          <ol
             className={[
-              "p-2",
+              styles.news,
+              "flex",
+              "flex-col",
+              "w-100",
+              "overflow-hidden",
+              "rounded-md",
               "m-2",
-              "bg-black",
-              "text-white",
-              "dark:text-gray-400",
+              "md:m-4",
             ].join(" ")}
-            onClick={() => increaseIndex(10)}
-            disabled={isLoading}
           >
+            {renderNews(newsDetails)}
+          </ol>
+        ) : (
+          <div
+            className={[
+              "fixed",
+              "inset-0",
+              "flex",
+              "justify-center",
+              "items-center",
+              "p-4",
+            ].join(" ")}
+          >
+            <Logo isSpinning={true} hasDropShadow={false} />
+          </div>
+        )}
+      </div>
+      <div className={["p-2", "md:p-4"].join(" ")}>
+        {newsDetails.length > 0 && (
+          <Button action={() => increaseIndex(10)}>
             {!isLoading ? "Show more" : "Loading..."}
-          </button>
+          </Button>
         )}
       </div>
     </div>
